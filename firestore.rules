@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow authenticated users to read and write their own user document
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Allow authenticated users to read all posts
+    match /posts/{postId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Allow authenticated users to read all discussions
+    // Allow authenticated users to create discussions
+    // Allow users to update/delete only their own discussions
+    match /discussions/{discussionId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+    
+    // Membership Applications collection rules
+    match /membershipApplications/{applicationId} {
+      // Allow users to create their own applications
+      allow create: if request.auth != null;
+      // Allow users to read their own applications
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      // Allow admins to read, update, and delete all applications
+      allow read, update, delete: if request.auth != null && 
+                                  get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Contact Messages collection rules
+    match /contactMessages/{messageId} {
+      // Allow users to create contact messages
+      allow create: if request.auth != null;
+      // Allow users to read their own messages
+      allow read: if request.auth != null && 
+                 (resource.data.userId == request.auth.uid || resource.data.userId == null);
+      // Allow admins to read, update, and delete all messages
+      allow read, update, delete: if request.auth != null && 
+                                  get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Default rule - deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

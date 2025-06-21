@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Space theme styles */
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Star animations */
+.stars-small {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(1px 1px at 20px 30px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 40px 70px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 50px 160px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 90px 40px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 130px 80px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1px 1px at 160px 120px, white, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  opacity: 0.6;
+}
+
+.stars-medium {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(1.5px 1.5px at 50px 80px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1.5px 1.5px at 100px 50px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1.5px 1.5px at 150px 30px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1.5px 1.5px at 200px 120px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1.5px 1.5px at 250px 80px, white, rgba(0, 0, 0, 0)),
+                    radial-gradient(1.5px 1.5px at 300px 160px, white, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 350px 350px;
+  animation: twinkle 6s ease-in-out infinite alternate;
+  opacity: 0.7;
+}
+
+.stars-large {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 100px 150px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 200px 100px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 300px 50px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 400px 200px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 500px 100px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+                    radial-gradient(2px 2px at 50px 300px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 550px 550px;
+  animation: twinkle 8s ease-in-out infinite alternate;
+  opacity: 0.8;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4c1d95;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6d28d9;
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: white;
+}
+
+/* Utility classes */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #c084fc, #f472b6);
+}
+
+.bg-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Animation classes */
+.hover-float {
+  transition: transform 0.3s ease;
+}
+
+.hover-float:hover {
+  transform: translateY(-5px);
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
