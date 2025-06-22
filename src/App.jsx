@@ -139,7 +139,7 @@ function App() {
 
   useEffect(() => {
     // ✅ Show animation for 2.5 seconds
-    const timer = setTimeout(() => setLoading(false), 2500);
+    const timer = setTimeout(() => setLoading(false), 5000);
     return () => clearTimeout(timer);
   }, []);
 

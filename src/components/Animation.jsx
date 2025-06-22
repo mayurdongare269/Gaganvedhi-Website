@@ -22,7 +22,7 @@
 // src/components/Animation.jsx
 import React from 'react';
 import Lottie from 'lottie-react';
-import animationData from '../assets/animation.json';
+import animationData from '../assets/amimation3.json';
 
 const Animation = () => {
   return (
